@@ -1,3 +1,4 @@
+#pragma once
 #include "deck.h"
 
 class Player
@@ -8,7 +9,7 @@ private:
 
 public:
     Player(std::string name);
-    void takeCard(Card karte);
+    void takeCard(Deck &deck);
     int getHandValue();
     bool isBusted();
     void showHand();

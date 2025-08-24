@@ -18,7 +18,7 @@ Card::Card(const std::string& suit, int rank)
     }
 } */
 
-int Card::getValue()
+int Card::getValue() const
 {
     if(m_rank > 10 && m_rank < 14)
         return 10;
@@ -26,6 +26,11 @@ int Card::getValue()
     if(m_rank == 1)
         return 11;
 
+    return m_rank;
+}
+
+int Card::getRank() const
+{
     return m_rank;
 }
 

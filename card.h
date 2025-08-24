@@ -9,10 +9,10 @@ private:
     int m_rank;
 
 public:
-    Card(const std::string& suit, int rank);
-    //void toString();
-    int getValue();
+    Card(const std::string &suit, int rank);
+    // void toString();
+    int getValue() const;
+    int getRank() const;
 
-    friend std::ostream& operator <<(std::ostream& os, const Card& card);
-
+    friend std::ostream &operator<<(std::ostream &os, const Card &card);
 };

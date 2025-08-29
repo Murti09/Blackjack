@@ -1,4 +1,5 @@
 #include "player.h"
+#include "methods.h"
 
 Player::Player(std::string name)
     : m_name(name)
@@ -12,25 +13,7 @@ void Player::takeCard(Deck &deck)
 
 int Player::getHandValue()
 {
-    int value = 0;
-    int anzAss = 0;
-
-    for (const Card &s : m_hand)
-    {
-        value += s.getValue();
-        if (s.getRank() == 1)
-        {
-            anzAss++;
-        }
-    }
-
-    while (value > 21 && anzAss > 0)
-    {
-        value -= 10;
-        anzAss--;
-    }
-
-    return value;
+    calculateHandValue(m_hand);
 }
 
 bool Player::isBusted()

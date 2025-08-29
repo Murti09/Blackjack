@@ -25,8 +25,13 @@ void Deck::shuffle()
 
 void Deck::printCards()
 {
+    int anzKarten = 0;
     for (Card c : m_cards)
+    {
         std::cout << c << std::endl;
+        anzKarten++;
+    }
+    std::cout << "Kartenanzahl: " << anzKarten << std::endl;
 }
 
 Card Deck::drawCard()

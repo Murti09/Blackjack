@@ -48,5 +48,4 @@ void Player::showHand()
     {
         std::cout << c << std::endl;
     }
-    std::cout << std::endl;
 }

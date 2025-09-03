@@ -13,7 +13,7 @@ void Player::takeCard(Deck &deck)
 
 int Player::getHandValue()
 {
-    calculateHandValue(m_hand);
+    return calculateHandValue(m_hand);
 }
 
 bool Player::isBusted()
@@ -26,9 +26,5 @@ bool Player::isBusted()
 
 void Player::showHand()
 {
-    std::cout << m_name << ":" << std::endl;
-    for (const Card &c : m_hand)
-    {
-        std::cout << c << std::endl;
-    }
+    printCards(m_name, m_hand);
 }

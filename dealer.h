@@ -11,7 +11,7 @@ public:
     void dealCard(Player& p);
     void takeCard();
 
-    int getHandvalue() const;
+    int getHandValue() const;
     void play(); // Bis 17 ziehen
 
     void showFirstCard() const;

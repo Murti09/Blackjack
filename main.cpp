@@ -6,8 +6,16 @@
 int main()
 {
     Dealer dealer;
-    dealer.shuffleDeck();
-}
+    Player player("Murti");
 
-/* mageprobleme
-hab nicht viel bauchscmerzen */
+    for (int i = 0; i < 2; i++)
+    {
+        dealer.dealCard(player);
+        dealer.takeCard();
+    }
+
+    player.showHand();
+    std::cout << player.getHandValue() << std::endl;;
+    dealer.showHand();
+    std::cout << dealer.getHandValue() << std::endl;
+}

@@ -22,3 +22,13 @@ int calculateHandValue(const std::vector<Card>& hand)
 
     return value;
 }
+
+void printCards(std::string name, const std::vector<Card>& hand)
+{
+    std::cout << name << ":" << std::endl;
+    for (const Card &c : hand)
+    {
+        std::cout << c << std::endl;
+    }
+    std::cout << std::endl;
+}

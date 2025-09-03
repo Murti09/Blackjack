@@ -16,7 +16,23 @@ void Dealer::takeCard()
     m_hand.push_back(m_deck.drawCard());
 }
 
-int Dealer::getHandvalue() const
+int Dealer::getHandValue() const
 {
-    calculateHandValue(m_hand);
+    return calculateHandValue(m_hand);
+}
+
+void Dealer::play()
+{
+    while (getHandValue() < 17)
+        takeCard();
+}
+
+void Dealer::showFirstCard() const
+{
+    std::cout << m_hand[0] << std::endl;
+}
+
+void Dealer::showHand() const
+{
+    printCards("Dealer", m_hand);
 }

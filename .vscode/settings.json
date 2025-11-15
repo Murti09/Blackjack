@@ -51,7 +51,9 @@
         "xtr1common": "cpp",
         "xutility": "cpp",
         "bitset": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "algorithm": "cpp",
+        "optional": "cpp"
     },
     "editor.fontSize": 18,
     "github.copilot.enable": {

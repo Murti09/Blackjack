@@ -32,7 +32,19 @@ void Dealer::showFirstCard() const
     std::cout << m_hand[0] << std::endl;
 }
 
-void Dealer::showHand() const
+void Dealer::showHand(bool revealAll) const
 {
-    printCards("Dealer", m_hand);
+    if (revealAll)
+    {
+        printCards("Dealer", m_hand);
+        std::cout << "Wert: " << getHandValue() << std::endl;
+        std::cout << std::endl;
+    }
+    else
+    {
+        std::cout << "Dealer: " << std::endl;
+        std::cout << m_hand[0] << std::endl;
+        std::cout << "[?]" << std::endl;
+        std::cout << std::endl;
+    }
 }

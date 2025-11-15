@@ -15,5 +15,5 @@ public:
     void play(); // Bis 17 ziehen
 
     void showFirstCard() const;
-    void showHand() const;
+    void showHand(bool revealAll) const;
 };

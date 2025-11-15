@@ -5,7 +5,9 @@
 
 int main()
 {
-    Dealer dealer;
+    system("chcp 65001 > nul");
+
+    /* Dealer dealer;
     Player player("Murti");
 
     for (int i = 0; i < 2; i++)
@@ -17,5 +19,21 @@ int main()
     player.showHand();
     std::cout << player.getHandValue() << std::endl;;
     dealer.showHand();
-    std::cout << dealer.getHandValue() << std::endl;
+    std::cout << dealer.getHandValue() << std::endl; */
+
+    Dealer dealer;
+    Player player("Murti");
+
+    // Anfangsphase
+    dealer.dealCard(player);
+    dealer.takeCard();
+    dealer.dealCard(player);
+    dealer.takeCard();
+
+    player.showHand();        // zeigt alles
+    dealer.showHand(false);   // zeigt nur 1 Karte + [verdeckt]
+
+    // Später, nach Spieler-Zug
+    dealer.showHand(true);    // zeigt alle Karten
+
 }

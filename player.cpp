@@ -27,4 +27,6 @@ bool Player::isBusted()
 void Player::showHand()
 {
     printCards(m_name, m_hand);
+    std::cout << "Wert: " << getHandValue() << std::endl;
+    std::cout << std::endl;
 }

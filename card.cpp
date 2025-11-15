@@ -39,10 +39,10 @@ std::ostream& operator <<(std::ostream& os, const Card& card)
     std::string rankStr;
     switch (card.m_rank)
     {
-        case 1: rankStr = "Ass"; break;
-        case 11: rankStr = "Bube"; break;
-        case 12: rankStr = "Dame"; break;
-        case 13: rankStr = "Koenig"; break;
+        case 1: rankStr = "A"; break;
+        case 11: rankStr = "J"; break;
+        case 12: rankStr = "Q"; break;
+        case 13: rankStr = "K"; break;
         default: rankStr = std::to_string(card.m_rank); break;
     }
     os << card.m_suit << " " << rankStr;

@@ -2,6 +2,7 @@
 #include "deck.h"
 #include "player.h"
 #include "dealer.h"
+#include "game.h"
 
 int main()
 {
@@ -21,7 +22,7 @@ int main()
     dealer.showHand();
     std::cout << dealer.getHandValue() << std::endl; */
 
-    Dealer dealer;
+    /* Dealer dealer;
     Player player("Murti");
 
     // Anfangsphase
@@ -34,6 +35,7 @@ int main()
     dealer.showHand(false);   // zeigt nur 1 Karte + [verdeckt]
 
     // Später, nach Spieler-Zug
-    dealer.showHand(true);    // zeigt alle Karten
-
+    dealer.showHand(true);    // zeigt alle Karten */
+    Game game;
+    game.playRound();
 }

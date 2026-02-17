@@ -3,6 +3,12 @@
 
 Dealer::Dealer()
 {
+    //m_deck.shuffle();
+    shuffleCards();
+}
+
+void Dealer::shuffleCards()
+{
     m_deck.shuffle();
 }
 

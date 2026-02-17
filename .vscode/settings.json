@@ -55,7 +55,7 @@
         "algorithm": "cpp",
         "optional": "cpp"
     },
-    "editor.fontSize": 18,
+    "editor.fontSize": 14,
     "github.copilot.enable": {
         "*": false,
         "plaintext": false,

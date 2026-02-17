@@ -1,3 +1,4 @@
+#pragma once
 #include "player.h"
 
 class Dealer
@@ -10,6 +11,7 @@ public:
     Dealer();
     void dealCard(Player& p);
     void takeCard();
+    void shuffleCards();
 
     int getHandValue() const;
     void play(); // Bis 17 ziehen

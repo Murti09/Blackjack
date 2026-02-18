@@ -18,4 +18,7 @@ public:
 
     void showFirstCard() const;
     void showHand(bool revealAll) const;
+
+    void clearHand();
+    void resetDeck();
 };

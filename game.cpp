@@ -7,42 +7,67 @@ Game::Game()
 
 void Game::playRound()
 {
-    dealer.shuffleCards();
-
-    dealer.dealCard(player);
-    dealer.takeCard();
-    dealer.dealCard(player);
-    dealer.takeCard();
-
-    player.showHand();
-    dealer.showHand(false); // Nur die erste karte anzeigen
-
-    if (player.getHandValue() == 21 && dealer.getHandValue() != 21)
+    bool nextRound;
+    char choice;
+    do
     {
-        std::cout << "Blackjack! " << player.getName() << " wins!" << std::endl;
-        return;
-    } // Player hat blackjack
+        dealer.shuffleCards();
 
-    if (player.getHandValue() != 21 && dealer.getHandValue() == 21)
-    {
-        dealer.showHand(true);
-        std::cout << "Dealer has Blackjack! Dealer wins!" << std::endl;
-        return;
-    } // Dealer hat blackjack
+        dealer.dealCard(player);
+        dealer.takeCard();
+        dealer.dealCard(player);
+        dealer.takeCard();
 
-    if (player.getHandValue() == 21 && dealer.getHandValue() == 21)
-    {
-        dealer.showHand(true);
-        std::cout << "Both have Blackjack!" << std::endl;
-        return;
-    } // untentschieden
+        showHands(false); // Nur die erste karte anzeigen
 
-    //----------------------------------Spieler Interaktionen
+        if (player.getHandValue() == 21 && dealer.getHandValue() != 21)
+        {
+            std::cout << "Blackjack! " << player.getName() << " wins!" << std::endl;
+        } // Player hat blackjack
 
-    playerTurn();
-    dealerTurn();
+        else if (player.getHandValue() != 21 && dealer.getHandValue() == 21)
+        {
+            dealer.showHand(true);
+            std::cout << "Dealer has Blackjack! Dealer wins!" << std::endl;
+        } // Dealer hat blackjack
 
-    determineWinner();
+        else if (player.getHandValue() == 21 && dealer.getHandValue() == 21)
+        {
+            dealer.showHand(true);
+            std::cout << "Both have Blackjack!" << std::endl;
+        } // untentschieden
+
+        //----------------------------------Spieler Interaktionen
+        else
+        {
+            playerTurn();
+            dealerTurn();
+            determineWinner();
+        }
+        do
+        {
+            std::cout << "\nNext round? (Y/N): ";
+            std::cin >> choice;
+            if (choice == 'y' || choice == 'Y')
+            {
+                nextRound = true;
+                system("cls");
+                player.clearHand();
+                dealer.clearHand();
+                dealer.resetDeck();
+                break;
+            }
+            else if (choice == 'n' || choice == 'N')
+            {
+                nextRound = false;
+                break;
+            }
+            else
+            {
+                std::cout << "Invalid input!" << std::endl;
+            }
+        } while (true);
+    } while (nextRound);
 }
 
 void Game::playerTurn()
@@ -52,20 +77,20 @@ void Game::playerTurn()
 
     while (playerTurn)
     {
-        std::cout << "Hit or Stand? (H/S): ";
+        std::cout << "\nHit or Stand? (H/S): ";
         std::cin >> choice;
-        std::cout << std::endl;
 
         if (choice == 'h' || choice == 'H')
         {
             system("cls");
             dealer.dealCard(player);
-            player.showHand();
+            showHands(false);
             if (player.isBusted())
                 return;
             if (player.getHandValue() == 21)
             {
                 std::cout << player.getName() << " has 21!" << std::endl;
+                std::cout << std::endl;
                 return;
             }
         }
@@ -75,7 +100,7 @@ void Game::playerTurn()
         }
         else
         {
-            std::cout << "Invalid input. Try again (H/S)" << std::endl;
+            std::cout << "Invalid input!" << std::endl;
         }
     }
 }
@@ -85,11 +110,19 @@ void Game::dealerTurn()
     if (player.isBusted())
         return;
 
-    dealer.showHand(true);
+    std::this_thread::sleep_for(1s);
+    system("cls");
+    showHands(true);
 
-    dealer.play();
-
-    dealer.showHand(true);
+    while (dealer.getHandValue() < 17)
+    {
+        std::this_thread::sleep_for(1s);
+        system("cls");
+        dealer.takeCard();
+        showHands(true);
+    }
+    system("cls");
+    showHands(true);
 }
 
 void Game::determineWinner()
@@ -105,25 +138,31 @@ void Game::determineWinner()
 
     else if (dealerValue > 21)
     {
-        std::cout << player.getName() << " wins!" << std::endl;
+        std::cout << "\n" << player.getName() << " wins!" << std::endl;
         return;
     }
 
     else if (playerValue > dealerValue)
     {
-        std::cout << player.getName() << " wins!" << std::endl;
+        std::cout << "\n" << player.getName() << " wins!" << std::endl;
         return;
     }
 
     else if (playerValue < dealerValue)
     {
-        std::cout << "Dealer wins!" << std::endl;
+        std::cout << "\nDealer wins!" << std::endl;
         return;
     }
 
     else
     {
-        std::cout << "draw!" << std::endl;
+        std::cout << "\nDraw!" << std::endl;
         return;
     }
+}
+
+void Game::showHands(bool revealAll)
+{
+    player.showHand();
+    dealer.showHand(revealAll);
 }

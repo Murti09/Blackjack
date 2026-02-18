@@ -14,4 +14,5 @@ public:
     bool isBusted();
     void showHand();
     std::string getName();
+    void clearHand();
 };

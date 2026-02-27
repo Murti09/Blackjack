@@ -13,4 +13,6 @@ public:
     int getHandValue();
     bool isBusted();
     void showHand();
+    std::string getName();
+    void clearHand();
 };

@@ -30,3 +30,13 @@ void Player::showHand()
     std::cout << "Wert: " << getHandValue() << std::endl;
     std::cout << std::endl;
 }
+
+std::string Player::getName()
+{
+    return m_name;
+}
+
+void Player::clearHand()
+{
+    m_hand.clear();
+}

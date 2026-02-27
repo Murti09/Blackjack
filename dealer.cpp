@@ -3,6 +3,12 @@
 
 Dealer::Dealer()
 {
+    //m_deck.shuffle();
+    shuffleCards();
+}
+
+void Dealer::shuffleCards()
+{
     m_deck.shuffle();
 }
 
@@ -38,13 +44,21 @@ void Dealer::showHand(bool revealAll) const
     {
         printCards("Dealer", m_hand);
         std::cout << "Wert: " << getHandValue() << std::endl;
-        std::cout << std::endl;
     }
     else
     {
         std::cout << "Dealer: " << std::endl;
         std::cout << m_hand[0] << std::endl;
         std::cout << "[?]" << std::endl;
-        std::cout << std::endl;
     }
+}
+
+void Dealer::clearHand()
+{
+    m_hand.clear();
+}
+
+void Dealer::resetDeck()
+{
+    m_deck = Deck();
 }

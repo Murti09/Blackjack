@@ -1,5 +1,10 @@
 #include "game.h"
 
+#define BLACKJACK 21
+#define DEALERMINIMUM 17
+#define DEALER_SHOW_ONE_CARD false
+#define DEALER_SHOW_ALL_CARDS true
+
 Game::Game()
     : player("Player"), dealer()
 {
@@ -18,22 +23,25 @@ void Game::playRound()
         dealer.dealCard(player);
         dealer.takeCard();
 
-        showHands(false); // Nur die erste karte anzeigen
+        int dealerHandValue = dealer.getHandValue();
+        int playerHandValue = player.getHandValue();
 
-        if (player.getHandValue() == 21 && dealer.getHandValue() != 21)
+        showHands(DEALER_SHOW_ONE_CARD); // Nur die erste karte anzeigen
+
+        if (playerHandValue == BLACKJACK && dealerHandValue != BLACKJACK)
         {
             std::cout << "Blackjack! " << player.getName() << " wins!" << std::endl;
         } // Player hat blackjack
 
-        else if (player.getHandValue() != 21 && dealer.getHandValue() == 21)
+        else if (playerHandValue != BLACKJACK && dealerHandValue == BLACKJACK)
         {
-            dealer.showHand(true);
+            dealer.showHand(DEALER_SHOW_ALL_CARDS);
             std::cout << "Dealer has Blackjack! Dealer wins!" << std::endl;
         } // Dealer hat blackjack
 
-        else if (player.getHandValue() == 21 && dealer.getHandValue() == 21)
+        else if (playerHandValue == BLACKJACK && dealerHandValue == BLACKJACK)
         {
-            dealer.showHand(true);
+            dealer.showHand(DEALER_SHOW_ALL_CARDS);
             std::cout << "Both have Blackjack!" << std::endl;
         } // untentschieden
 
@@ -84,10 +92,10 @@ void Game::playerTurn()
         {
             system("cls");
             dealer.dealCard(player);
-            showHands(false);
+            showHands(DEALER_SHOW_ONE_CARD);
             if (player.isBusted())
                 return;
-            if (player.getHandValue() == 21)
+            if (player.getHandValue() == BLACKJACK)
             {
                 std::cout << player.getName() << " has 21!" << std::endl;
                 std::cout << std::endl;
@@ -112,17 +120,17 @@ void Game::dealerTurn()
 
     std::this_thread::sleep_for(1s);
     system("cls");
-    showHands(true);
+    showHands(DEALER_SHOW_ALL_CARDS);
 
-    while (dealer.getHandValue() < 17)
+    while (dealer.getHandValue() < DEALERMINIMUM)
     {
         std::this_thread::sleep_for(1s);
         system("cls");
         dealer.takeCard();
-        showHands(true);
+        showHands(DEALER_SHOW_ALL_CARDS);
     }
     system("cls");
-    showHands(true);
+    showHands(DEALER_SHOW_ALL_CARDS);
 }
 
 void Game::determineWinner()

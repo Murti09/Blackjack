@@ -3,10 +3,12 @@
 #include "player.h"
 #include "dealer.h"
 #include "game.h"
+#include <windows.h>
 
 int main()
 {
-    system("chcp 65001 > nul");
+    //system("chcp 65001 > nul");
+    SetConsoleOutputCP(CP_UTF8);
 
     /* Dealer dealer;
     Player player("Murti");
